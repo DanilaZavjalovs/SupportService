@@ -8,7 +8,7 @@
 
 ## Project Setup
 
-1. **Clone the repository**: Use the command `git clone <repository-url>` to clone the repository to your local machine.
+1. **Clone the repository**: Use the command `git clone https://github.com/DanilaZavjalovs/SupportService.git` to clone the repository to your local machine.
 
 2. **Start the PostgreSQL database**: The project uses a PostgreSQL database running in a Docker container. The Docker Compose file for starting the database is located in the `docker` directory. Navigate to the `docker` directory and run the following command to start the database:
 
