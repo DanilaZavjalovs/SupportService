@@ -1,24 +1,22 @@
 # Project Setup and Usage Documentation
 
-
 ## Prerequisites
 - Java 17
 - Docker
+- Docker Compose
 - Gradle
-
 
 ## Project Setup
 
 1. **Clone the repository**: Use the command `git clone <repository-url>` to clone the repository to your local machine.
 
-2. **Build the project**: Navigate to the project directory and run the command `./gradlew build` to build the project.
-
-3. **Start the PostgreSQL database**: The project uses a PostgreSQL database running in a Docker container. You can start the database using the following command:
+2. **Start the PostgreSQL database**: The project uses a PostgreSQL database running in a Docker container. The Docker Compose file for starting the database is located in the `docker` directory. Navigate to the `docker` directory and run the following command to start the database:
 
 ```bash
-docker run --name integration-tests-db -e POSTGRES_USER=username -e POSTGRES_PASSWORD=password -p 5432:5432 -d postgres
+docker-compose up -d
 ```
 
+3. **Build the project**: Navigate back to the project directory and run the command `./gradlew build` to build the project.
 
 ## Running the Application
 
@@ -50,3 +48,42 @@ Here is an example of how to use the `SupportAgentController`:
 2. **Get a support agent by ID**: Send a GET request to `/api/supportAgent/{id}`, replacing `{id}` with the ID of the support agent you want to retrieve.
 
 Please note that some endpoints require authentication. You can authenticate by providing a valid username(test) and password(testtest) in the `Authorization` header of your requests.
+
+# User Registration
+
+To register a new user, you send a POST request to an endpoint such as `/api/register`. The request body would contain the user's information, such as their username and password. Here is an example of a valid JSON body for user registration:
+
+```json
+{
+    "username": "newuser",
+    "password": "newpassword"
+}
+```
+
+# Running Tests
+
+To run tests in project, you can use the Gradle `test` task. Here's how you can do it:
+
+1. Open a terminal in your project directory.
+
+2. Run the following command:
+
+```bash
+./gradlew test
+```
+
+This command will compile your code, run your tests, and output the results to the console.
+
+If you want to see more detailed output, you can use the `--info` or `--debug` flags:
+
+```bash
+./gradlew test --info
+```
+
+or
+
+```bash
+./gradlew test --debug
+```
+
+These commands will provide more detailed output about the test execution, including which tests were run and how long they took.
